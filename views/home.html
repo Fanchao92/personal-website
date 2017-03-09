@@ -3,12 +3,53 @@
   <head>
     <meta charset="utf-8">
     <title>{{authorName}}</title>
-    <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
-    <link rel="stylesheet" type="text/css" href="css/bootstrap-theme.min.css">
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <!-- Optional theme -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+    <!-- JQuery CDN File -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
-    <script type="text/javascript" src="js/bootstrap.min.js"></script>
-  </head>
-  <body>
+    <!-- Latest compiled and minified JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
 
+    <style>
+      nav>div {
+        background-color: #800000;  //Maroon
+      }
+      nav ul.nav li span {
+        font-size: 120%;
+        color: #FFFFFF;
+      }
+      nav ul.nav li.active span {
+        font-size: 180%;
+        color: #800000;
+      }
+      body {
+        position: relative;
+      }
+    </style>
+  </head>
+  <body data-spy="scroll" data-target="#scrollspy-target-nav">
+    <script src="js/my-scrollspy.js"></script>
+
+    <nav id="scrollspy-target-nav" class="navbar navbar-default navbar-fixed-top">
+      <div class="container-fluid">
+        <div class="navbar-header">
+          <a class="navbar-brand" href="/"><img alt="Brand" src="images/nav-header-brand.png"></a>
+        </div>
+        <ul class="nav navbar-nav navbar-right">
+          <li><a href="#about-me"><span>About Me</span></a></li>
+          <li><a href="#my-edu"><span>My Education</span></a></li>
+          <li><a href="#my-prof"><span>My Professional</span></a></li>
+          <li><a href="#contact-me"><span>Contact Me</span></a></li>
+        </ul>
+      </div>
+    </nav>
+
+    <!-- -->
+    <h1 id="about-me">About Me</h1><img alt="Placeholder" src="http://placehold.it/300x800">
+    <h1 id="my-edu">My Education</h1><img alt="Placeholder" src="http://placehold.it/300x800">
+    <h1 id="my-prof">My Professional</h1><img alt="Placeholder" src="http://placehold.it/300x800">
+    <h1 id="contact-me">Contact Me</h1><img alt="Placeholder" src="http://placehold.it/300x800">
   </body>
 </html>
