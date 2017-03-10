@@ -2,7 +2,7 @@
 <html>
   <head>
     <meta charset="utf-8">
-    <title>{{authorName}}</title>
+    <title>{{title}}</title>
     <!-- Latest compiled and minified CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
     <!-- Optional theme -->
@@ -14,28 +14,28 @@
 
     <style>
       nav>div {
-        background-color: #800000;  //Maroon
+        background-color: {{maroonColor}};
       }
       nav ul.nav li span {
-        font-size: 120%;
-        color: #FFFFFF;
+        color: {{whiteColor}};
       }
       nav ul.nav li.active span {
-        font-size: 180%;
-        color: #800000;
+        font-size: {{zoomInSize}};
+        color: {{maroonColor}};
       }
       body {
         position: relative;
       }
     </style>
   </head>
-  <body data-spy="scroll" data-target="#scrollspy-target-nav">
-    <script src="js/my-scrollspy.js"></script>
 
+  <body data-spy="scroll" data-target="#scrollspy-target-nav">
     <nav id="scrollspy-target-nav" class="navbar navbar-default navbar-fixed-top">
       <div class="container-fluid">
         <div class="navbar-header">
-          <a class="navbar-brand" href="/"><img alt="Brand" src="images/nav-header-brand.png"></a>
+          <a class="navbar-brand" href="/">
+            <img class="img-responsive" alt="Brand" src="{{signature}}">
+          </a>
         </div>
         <ul class="nav navbar-nav navbar-right">
           <li><a href="#about-me"><span>About Me</span></a></li>
@@ -46,10 +46,9 @@
       </div>
     </nav>
 
-    <!-- -->
-    <h1 id="about-me">About Me</h1><img alt="Placeholder" src="http://placehold.it/300x800">
-    <h1 id="my-edu">My Education</h1><img alt="Placeholder" src="http://placehold.it/300x800">
-    <h1 id="my-prof">My Professional</h1><img alt="Placeholder" src="http://placehold.it/300x800">
-    <h1 id="contact-me">Contact Me</h1><img alt="Placeholder" src="http://placehold.it/300x800">
+    <h1 id="about-me">About Me</h1><img alt="Placeholder" src="http://placehold.it/300x800/A05800">
+    <h1 id="my-edu">My Education</h1><img alt="Placeholder" src="http://placehold.it/300x800/80FD00">
+    <h1 id="my-prof">My Professional</h1><img alt="Placeholder" src="http://placehold.it/300x800/20FABC">
+    <h1 id="contact-me">Contact Me</h1><img alt="Placeholder" src="http://placehold.it/300x800/F0FD00">
   </body>
 </html>

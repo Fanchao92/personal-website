@@ -12,7 +12,11 @@ app.use(express.static(`${__dirname}/public`));
 //Render the main page
 app.get('/', (req, res) => {
 	var data = {
-		authorName: 'Fanchao Zhou'
+		title: 'Welcome to Fanchao\'s Page!',
+		maroonColor: '#800000',
+		whiteColor: '#FFFFFF',
+		zoomInSize: '120%',
+		signature: 'images/nav-header-brand.png'
 	};
 
 	res.render('home.html', data);
