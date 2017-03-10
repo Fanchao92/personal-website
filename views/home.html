@@ -4,24 +4,20 @@
     <meta charset="utf-8">
     <title>{{title}}</title>
     <!-- Latest compiled and minified CSS -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <link rel="stylesheet" href="css/bootstrap.min.css">
     <!-- Optional theme -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+    <link rel="stylesheet" href="css/bootstrap-theme.min.css">
     <!-- JQuery CDN File -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
     <!-- Latest compiled and minified JavaScript -->
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+    <script src="js/bootstrap.min.js"></script>
 
     <style>
-      nav>div {
-        background-color: {{maroonColor}};
-      }
-      nav ul.nav li span {
-        color: {{whiteColor}};
-      }
       nav ul.nav li.active span {
         font-size: {{zoomInSize}};
-        color: {{maroonColor}};
+      }
+      nav ul.nav li.dropdown.open span{
+        font-size: {{zoomInSize}};
       }
       body {
         position: relative;
@@ -39,16 +35,42 @@
         </div>
         <ul class="nav navbar-nav navbar-right">
           <li><a href="#about-me"><span>About Me</span></a></li>
-          <li><a href="#my-edu"><span>My Education</span></a></li>
-          <li><a href="#my-prof"><span>My Professional</span></a></li>
+          <li class="dropdown">
+            <a href="#" class="dropdown-toggle" id="navbarDropEdu" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+              <span>My Education</span>
+              <span class="caret"></span>
+            </a>
+            <ul class="dropdown-menu" aria-labelledby="navbarDropEdu">
+              <li class><a href="#my-edu-1"><img alt="Placeholder" src="http://placehold.it/80x80/eeeeee">Item 1</a></li>
+              <li class><a href="#my-edu-2"><img alt="Placeholder" src="http://placehold.it/80x80/eeeeee">Item 2</a></li>
+              <li class><a href="#my-edu-3"><img alt="Placeholder" src="http://placehold.it/80x80/eeeeee">Item 3</a></li>
+            </ul>
+          </li>
+          <li class="dropdown">
+            <a href="#" class="dropdown-toggle" id="navbarDropProf" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+              <span>My Professional</span>
+              <span class="caret"></span>
+            </a>
+            <ul class="dropdown-menu" aria-labelledby="navbarDropProf">
+              <li class><a href="#my-prof-goal">My Goal</a></li>
+              <li class><a href="#my-prof-skills">My Skills</a></li>
+              <li class><a href="#my-prof-projects">My Projects</a></li>
+            </ul>
+          </li>
           <li><a href="#contact-me"><span>Contact Me</span></a></li>
         </ul>
       </div>
     </nav>
 
     <h1 id="about-me">About Me</h1><img alt="Placeholder" src="http://placehold.it/300x800/A05800">
-    <h1 id="my-edu">My Education</h1><img alt="Placeholder" src="http://placehold.it/300x800/80FD00">
-    <h1 id="my-prof">My Professional</h1><img alt="Placeholder" src="http://placehold.it/300x800/20FABC">
+    <h1 id="my-edu">My Education</h1>
+    <h2 id="my-edu-1">My Education 1</h1><img alt="Placeholder" src="http://placehold.it/300x200/80FD00">
+    <h2 id="my-edu-2">My Education 2</h1><img alt="Placeholder" src="http://placehold.it/300x200/80FD00">
+    <h2 id="my-edu-3">My Education 3</h1><img alt="Placeholder" src="http://placehold.it/300x200/80FD00">
+    <h1 id="my-prof">My Professional</h1>
+    <h2 id="my-prof-goal">My Goal</h1><img alt="Placeholder" src="http://placehold.it/300x200/20FABC">
+    <h2 id="my-prof-skills">My Skills</h1><img alt="Placeholder" src="http://placehold.it/300x200/20FABC">
+    <h2 id="my-prof-projects">My Projects</h1><img alt="Placeholder" src="http://placehold.it/300x200/20FABC">
     <h1 id="contact-me">Contact Me</h1><img alt="Placeholder" src="http://placehold.it/300x800/F0FD00">
   </body>
 </html>

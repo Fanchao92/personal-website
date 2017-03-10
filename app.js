@@ -15,7 +15,7 @@ app.get('/', (req, res) => {
 		title: 'Welcome to Fanchao\'s Page!',
 		maroonColor: '#800000',
 		whiteColor: '#FFFFFF',
-		zoomInSize: '120%',
+		zoomInSize: '150%',
 		signature: 'images/nav-header-brand.png'
 	};
 
