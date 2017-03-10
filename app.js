@@ -22,7 +22,11 @@ app.get('/', (req, res) => {
 		whiteColor: '#ffffff',
 		blueColor: '#16e0cf',
 		maroonColor: '#800000',
-		fontStyle: 'italic'
+		fontStyle: 'italic',
+		aboutMe: 'About Me',
+		myEdu: 'My Education',
+		myProf: 'My Professional',
+		contactMe: "Contact Me"
 	};
 
 	res.render('home.html', data);
@@ -34,7 +38,7 @@ app.get('/about', (req, res) => {
 	var aboutObj = {};
 
 	aboutObj.myImg = "images/my-picture.jpg"
-	aboutObj.selfIntro = fs.readFileSync(`public/text/self-intro.txt`, {encoding: 'utf8'});
+	aboutObj.selfIntro = fs.readFileSync('public/text/self-intro.txt', {encoding: 'utf8'});
 
 	res.send(aboutObj);
 });

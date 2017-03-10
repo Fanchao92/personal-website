@@ -25,10 +25,10 @@
           </a>
         </div>
         <ul class="nav navbar-nav navbar-right">
-          <li><a href="#about-me-h"><span>About Me</span></a></li>
+          <li><a href="#about-me-h"><span>{{aboutMe}}</span></a></li>
           <li class="dropdown">
             <a href="#" class="dropdown-toggle" id="navbarDropEdu" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
-              <span>My Education</span>
+              <span>{{myEdu}}</span>
               <span class="caret"></span>
             </a>
             <ul class="dropdown-menu" aria-labelledby="navbarDropEdu">
@@ -39,7 +39,7 @@
           </li>
           <li class="dropdown">
             <a href="#" class="dropdown-toggle" id="navbarDropProf" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
-              <span>My Professional</span>
+              <span>{{myProf}}</span>
               <span class="caret"></span>
             </a>
             <ul class="dropdown-menu" aria-labelledby="navbarDropProf">
@@ -48,7 +48,7 @@
               <li class><a href="#my-prof-projects">My Projects</a></li>
             </ul>
           </li>
-          <li><a href="#contact-me"><span>Contact Me</span></a></li>
+          <li><a href="#contact-me"><span>{{contactMe}}</span></a></li>
         </ul>
       </div>
     </nav>
@@ -56,22 +56,22 @@
     <img alt="Placeholder" src="{{zhuhaiImg}}" style="width:100%;">
 
     <div class="container-fluid bg-color-blue" id="about-me-div">
-      <h1 id="about-me-h">About Me</h1>
+      <h1 id="about-me-h" align="center">{{aboutMe}}</h1>
       <div id="about-me-content" class="row fade-in-div">
         <div id="about-me-content-img" class="col-md-3"></div>
         <div id="about-me-content-text" class="col-md-9"></div>
       </div>
     </div>
     
-    <h1 id="my-edu">My Education</h1>
+    <h1 id="my-edu">{{myEdu}}</h1>
     <h2 id="my-edu-1">My Education 1</h1><img alt="Placeholder" src="http://placehold.it/300x200/80FD00">
     <h2 id="my-edu-2">My Education 2</h1><img alt="Placeholder" src="http://placehold.it/300x200/80FD00">
     <h2 id="my-edu-3">My Education 3</h1><img alt="Placeholder" src="http://placehold.it/300x200/80FD00">
-    <h1 id="my-prof">My Professional</h1>
+    <h1 id="my-prof">{{myProf}}</h1>
     <h2 id="my-prof-goal">My Goal</h1><img alt="Placeholder" src="http://placehold.it/300x200/20FABC">
     <h2 id="my-prof-skills">My Skills</h1><img alt="Placeholder" src="http://placehold.it/300x200/20FABC">
     <h2 id="my-prof-projects">My Projects</h1><img alt="Placeholder" src="http://placehold.it/300x200/20FABC">
-    <h1 id="contact-me">Contact Me</h1><img alt="Placeholder" src="http://placehold.it/300x800/F0FD00">
+    <h1 id="contact-me">{{contactMe}}</h1><img alt="Placeholder" src="http://placehold.it/300x800/F0FD00">
 
     <script type="text/javascript">
       $.getJSON('{{rootURL}}'+'/about', {}, function(data){
@@ -82,6 +82,20 @@
         $('#about-me-div #about-me-content #about-me-content-text').append(selfIntro);
       }).fail(function(evt) {
         $('#about-me').after($('<p style="color: red; font-weight: bold">Could NOT self introduction!</p>'));
+      });
+
+      $('#scrollspy-target-nav').on('activate.bs.scrollspy', function (event) {
+        var activeSect = $(event.target).find('span'), activeSectName;
+
+        if(activeSect.length > 1) {
+          activeSect = activeSect[ 0 ];
+        }
+        activeSectName = $(activeSect).text();
+        $('h1').each((idx, ele) => {
+          if($(ele).text() === activeSectName) {
+            $(ele).siblings('div.fade-in-div').css('visibility', 'visible').hide().fadeIn(1000);
+          }
+        });
       });
     </script>
   </body>
