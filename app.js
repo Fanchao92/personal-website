@@ -22,7 +22,6 @@ app.get('/', (req, res) => {
 		signature: 'images/nav-header-brand.png',
 		zhuhaiImg: 'images/zhuhai.png',
 		rootURL: `${req.protocol}://${req.get('Host')}`,
-		reqProtocol: `${req.secure}`,
 		whiteColor: '#ffffff',
 		blueColor: '#9bf1ff',
 		maroonColor: '#800000',
