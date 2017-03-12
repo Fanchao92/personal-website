@@ -67,7 +67,7 @@
     <h1 id="contact-me">{{contactMe}}</h1><img alt="Placeholder" src="http://placehold.it/300x800/F0FD00">
 
     <script type="text/javascript">
-      console.log('{{data.reqProtocol}}');
+      console.log('{{reqProtocol}}');
       $.getJSON('{{rootURL}}'+'/about', {}, function(data){
         var img = $(`<img class="img-responsive img-circle" alt="My Picture" src="${data.myImg}" style="width: 256px; height: 256px">`);
         var selfIntro = $(`<p>${data.selfIntro}</p>`);
