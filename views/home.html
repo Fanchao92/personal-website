@@ -68,6 +68,8 @@
 
     <script type="text/javascript">
       $.getJSON('{{rootURL}}'+'/about', {}, function(data){
+        console.log('{{rootURL}}'+"/about");
+
         var img = $(`<img class="img-responsive img-circle" alt="My Picture" src="${data.myImg}" style="width: 256px; height: 256px">`);
         var selfIntro = $(`<p>${data.selfIntro}</p>`);
 
