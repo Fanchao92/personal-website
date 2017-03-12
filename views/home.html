@@ -56,15 +56,6 @@
     <div class="container-fluid bg-color-white" id="my-edu-div">
       <h1 id="my-edu-h">{{myEdu}}</h1>
       <div id="my-edu-content" class="row fade-in-div">
-        <div class="col-md-4">
-          <h2>My Education 1</h1><img alt="Placeholder" src="http://placehold.it/300x200/80FD00" style="width: 100%;">
-        </div>
-        <div class="col-md-4">
-          <h2>My Education 2</h1><img alt="Placeholder" src="http://placehold.it/300x200/80FD00" style="width: 100%;">
-        </div>
-        <div class="col-md-4">
-          <h2>My Education 3</h1><img alt="Placeholder" src="http://placehold.it/300x200/80FD00" style="width: 100%;">
-        </div>
       </div>
     </div>
 
@@ -77,13 +68,25 @@
 
     <script type="text/javascript">
       $.getJSON('{{rootURL}}'+'/about', {}, function(data){
-        var img = $(`<img class="img-responsive" alt="My Picture" src="${data.myImg}" style="width: 256px; height: 256px">`);
+        var img = $(`<img class="img-responsive img-circle" alt="My Picture" src="${data.myImg}" style="width: 256px; height: 256px">`);
         var selfIntro = $(`<p>${data.selfIntro}</p>`);
 
         $('#about-me-div #about-me-content #about-me-content-img').append(img);
         $('#about-me-div #about-me-content #about-me-content-text').append(selfIntro);
       }).fail(function(evt) {
-        $('#about-me').after($('<p style="color: red; font-weight: bold">Could NOT self introduction!</p>'));
+        $('#about-me-h').after($('<p style="color: red; font-weight: bold">Could NOT load self introduction!</p>'));
+      });
+
+      $.getJSON('{{rootURL}}'+'/edu', {}, function(data) {        
+        if(data.forEach) {
+          data.forEach((edu) => {
+            addOneEdu(edu);
+          });
+        } else {
+          addOneEdu(data);
+        }
+      }).fail(function(evt) {
+        $('#my-edu-h').after($('<p style="color: red; font-weight: bold">Could NOT load education records!</p>'));
       });
 
       $('#scrollspy-target-nav').on('activate.bs.scrollspy', function (event) {
@@ -102,6 +105,43 @@
           }
         });
       });
+
+      function addOneEdu(edu) {
+        var eduSect = $('#my-edu-div #my-edu-content');
+        var curEduSect = $('<div class="col-md-4"></div>');
+        var curEduThumbnail = $('<div class="thumbnail"></div>');
+        var caption = $('<div class="caption"></div>');
+        var schoolLink = $(`<a href=${edu.schoolWebLink}></a>`);
+        var schoolLogoImg = $(`<img src="${edu.schoolLogoLink}" alt="School Logo" style="height: 168px;">`);
+        var schoolImg = $(`<img src="${edu.schoolImgLink}" alt="School Image" style="height: 168px">`);
+
+        eduSect.append(curEduSect);
+        curEduSect.append(curEduThumbnail);
+        curEduThumbnail.append(schoolLink);
+        schoolLink.append(schoolLogoImg);
+        curEduThumbnail.append(caption);
+        caption.append(`<h4>${edu.schoolName}</h4>`);
+
+        if(edu.major) {
+          caption.append(`<p>Degree Earned: ${edu.degreeEarned} in ${edu.major}</p>`);
+        } else {
+          caption.append(`<p>Degree Earned: ${edu.degreeEarned}</p>`);
+        }
+
+        if(edu.gpa) {
+          caption.append(`<p>gpa: ${edu.gpa}</p>`);
+        } else {
+          caption.append('<p>gpa: Not Available</p>');
+        }
+
+        schoolLink.hover(() => {
+          schoolLogoImg.remove();
+          schoolLink.append(schoolImg);
+        }, () => {
+          schoolImg.remove();
+          schoolLink.append(schoolLogoImg);
+        });
+      }
     </script>
   </body>
 </html>

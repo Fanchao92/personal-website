@@ -1,6 +1,8 @@
 const express = require('express');
 const hbs = require('hbs');
 const fs = require('fs');
+const mongoose = require('./database/db/mongoose.js').mongoose;
+const MyEdu = require('./database/models/myedu.js').MyEdu;
 const port = process.env.PORT || 3000;
 
 var app = express();
@@ -46,6 +48,11 @@ app.get('/about', (req, res) => {
 
 app.get('/edu', (req, res) => {
 	//return a JSON array containing my education
+	MyEdu.find().then((myEdus) => {
+		res.send(myEdus);
+	}).catch((err) => {
+		res.status(400).send(err);
+	});
 });
 
 app.get('/professional/goal', (req, res) => {
