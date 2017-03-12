@@ -15,7 +15,6 @@ hbs.registerPartials(`${__dirname}/views/partials`);
 //Render the main page
 app.get('/', (req, res) => {
 	var data = {
-		rootURL: `${req.protocol}://${req.get('Host')}`,
 		title: 'Welcome to Fanchao\'s Page!',
 		navZoomIn: '150%',
 		pZoomIn: '120%',
