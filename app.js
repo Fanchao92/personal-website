@@ -15,13 +15,13 @@ hbs.registerPartials(`${__dirname}/views/partials`);
 //Render the main page
 app.get('/', (req, res) => {
 	var data = {
+		rootURL: `${req.protocol}://${req.get('Host')}`,
 		title: 'Welcome to Fanchao\'s Page!',
 		navZoomIn: '150%',
 		pZoomIn: '120%',
 		hZoomIn: '340%',
 		signature: 'images/nav-header-brand.png',
 		zhuhaiImg: 'images/zhuhai.png',
-		rootURL: `${req.protocol}://${req.get('Host')}`,
 		whiteColor: '#ffffff',
 		blueColor: '#9bf1ff',
 		maroonColor: '#800000',
@@ -40,7 +40,7 @@ app.get('/about', (req, res) => {
 	//return a JSON object containing a brief introduction and a personal image
 	var aboutObj = {};
 
-	aboutObj.myImg = "images/my-picture.jpg"
+	aboutObj.myImg = "images/my-picture.jpg";
 	aboutObj.selfIntro = fs.readFileSync('public/text/self-intro.txt', {encoding: 'utf8'});
 
 	res.send(aboutObj);

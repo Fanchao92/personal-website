@@ -67,8 +67,8 @@
     <h1 id="contact-me">{{contactMe}}</h1><img alt="Placeholder" src="http://placehold.it/300x800/F0FD00">
 
     <script type="text/javascript">
-      $.getJSON('{{rootURL}}'+'/about', {}, function(data){
-        var img = $(`<img class="img-responsive img-circle" alt="My Picture" src="${data.myImg}" style="width: 256px; height: 256px">`);
+      $.getJSON('/about', {}, function(data){
+        var img = $(`<img class="img-responsive img-circle" alt="My Picture" src="${data.myImg}" style="width: 256px; height: 256px; vertical-align: middle;">`);
         var selfIntro = $(`<p>${data.selfIntro}</p>`);
 
         $('#about-me-div #about-me-content #about-me-content-img').append(img);
@@ -77,7 +77,7 @@
         $('#about-me-h').after($('<p style="color: red; font-weight: bold">Could NOT load self introduction!</p>'));
       });
 
-      $.getJSON('{{rootURL}}'+'/edu', {}, function(data) {        
+      $.getJSON('/edu', {}, function(data) {        
         if(data.forEach) {
           data.forEach((edu) => {
             addOneEdu(edu);
@@ -100,7 +100,7 @@
           if($(ele).text() === activeSectName) {
             var contentDiv = $(ele).siblings('div.fade-in-div');
             if(contentDiv.css('visibility') === 'hidden') {
-              contentDiv.css('visibility', 'visible').hide().fadeIn(1250);
+              contentDiv.css('visibility', 'visible').hide().fadeIn(1500);
             }
           }
         });
