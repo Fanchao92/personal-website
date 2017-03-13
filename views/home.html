@@ -43,9 +43,9 @@
       </div>
     </nav>
 
-    <div style="position: relative;">
+    <div style="position: relative;" class="cover">
       <img alt="Placeholder" src="{{zhuhaiImg}}" style="width: 100%;">
-      <p style="position: absolute; left: 5%; top: 15%; color: white; font-size: 25px">Welcome to <span style="font-weight: bold; font-size: 50px">Fanchao's</span> Personal Page!</p>
+      <p style="position: absolute; display: none; left: 5%; top: 15%; color: white; font-size: 25px">Welcome to <span style="font-weight: bold; font-size: 50px">Fanchao's</span> Personal Page!</p>
     </div>
 
     <div class="container-fluid bg-color-blue" id="about-me-div">
@@ -108,6 +108,10 @@
             }
           }
         });
+      });
+
+      $(document).ready(() => {
+        $("div.cover").find('p').slideDown(700);
       });
 
       function addOneEdu(edu) {
