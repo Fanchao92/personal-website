@@ -1,0 +1,25 @@
+figure.img-sliding-cap-div {
+	margin: 0px;
+	width: 300px;
+	position: relative;
+	overflow: hidden;
+}
+
+figure.img-sliding-cap-div img {
+	display: block;
+	width: 100%;
+}
+
+figure.img-sliding-cap-div figcaption {
+	background-color: #800000;
+	color: #ffffff;
+	opacity: 0.5;
+	position: absolute;
+	top: -4em;
+	transition-duration: 0.2s;
+    transition-timing-function: ease-in;
+}
+
+figure.img-sliding-cap-div:hover figcaption {
+	top: 0px;
+}

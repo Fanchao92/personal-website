@@ -18,7 +18,7 @@ app.get('/', (req, res) => {
 		title: 'Welcome to Fanchao\'s Page!',
 		navZoomIn: '150%',
 		pZoomIn: '120%',
-		hZoomIn: '340%',
+		hZoomIn: '250%',
 		signature: 'images/nav-header-brand.png',
 		zhuhaiImg: 'images/zhuhai.png',
 		whiteColor: '#ffffff',
@@ -27,7 +27,7 @@ app.get('/', (req, res) => {
 		fontStyle: 'italic',
 		aboutMe: 'About Me',
 		myEdu: 'My Education',
-		myProf: 'My Professional',
+		myProf: 'My Profession',
 		contactMe: "Contact Me"
 	};
 
@@ -64,6 +64,10 @@ app.get('/professional/skills', (req, res) => {
 
 app.get('/professional/projects', (req, res) => {
 	//return a JSON array containing all the projects I've done
+});
+
+app.post('/contact', (req, res) => {
+	;
 });
 //////////////////// End of the API part ////////////////////////
 
