@@ -45,7 +45,7 @@
 
     <div style="position: relative;" class="cover">
       <img alt="Placeholder" src="{{zhuhaiImg}}" style="width: 100%;">
-      <p style="position: absolute; display: none; left: 5%; top: 15%; color: white; font-size: 25px">Welcome to <span style="font-weight: bold; font-size: 50px">Fanchao's</span> Personal Page!</p>
+      <p>Welcome to <span>Fanchao's</span> Personal Page!</p>
     </div>
 
     <div class="container-fluid bg-color-blue" id="about-me-div">
@@ -63,9 +63,34 @@
     </div>
 
     <div class="container-fluid bg-color-blue" id="my-prof-div">
-      <h2 id="my-prof-goal-h">My Goal</h1><img alt="Placeholder" src="http://placehold.it/300x200/20FABC">
-      <h2 id="my-prof-skills-h">My Skills</h1><img alt="Placeholder" src="http://placehold.it/300x200/20FABC">
-      <h2 id="my-prof-projects-h">My Projects</h1><img alt="Placeholder" src="http://placehold.it/300x200/20FABC">
+      <h1 id="my-prof-h" style="font-size: 0%">{{myProf}}</h1>
+      <div id="my-prof-content" class="fade-in-div">
+        <div id="my-prof-goal">
+          <h2 id="my-prof-goal-h">My Goal</h2>
+          <div id="my-prof-goal-content">
+            <p>
+              I am a software engineer now. And not only that, but also <span style="font-weight: bold;">I want to become a GOOD software engineer</span>. As far as I see, the future of software engineering is shaped by the following <span id="num-of-aspects"></span> aspects, which I should work on for my goal:
+            </p>
+            <div class="my-prof-goal-aspects">
+              <!-- PlaceHolder -->
+            </div>
+          </div>
+        </div>
+
+        <div id="my-prof-skills">
+          <h2 id="my-prof-skills-h">My Skills</h2>
+          <div id="my-prof-skills-content">
+            <!-- PlaceHolder -->
+          </div>
+        </div>
+
+        <div id="my-prof-projects">
+          <h2 id="my-prof-projects-h">My Projects</h2>
+          <div id="my-prof-projects-content">
+            <!-- PlaceHolder -->
+          </div>
+        </div>
+      </div>
     </div>
 
     <h1 id="contact-me">{{contactMe}}</h1><img alt="Placeholder" src="http://placehold.it/300x800/F0FD00">
@@ -104,14 +129,14 @@
           if($(ele).text() === activeSectName) {
             var contentDiv = $(ele).siblings('div.fade-in-div');
             if(contentDiv.css('visibility') === 'hidden') {
-              contentDiv.css('visibility', 'visible').hide().fadeIn(1500);
+              contentDiv.css('visibility', 'visible').hide().fadeIn(1200);
             }
           }
         });
       });
 
       $(document).ready(() => {
-        $("div.cover").find('p').slideDown(700);
+        $("div.cover").find('p').animate({top: "15%"}, 900);
       });
 
       function addOneEdu(edu) {

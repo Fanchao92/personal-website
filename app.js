@@ -3,6 +3,7 @@ const hbs = require('hbs');
 const fs = require('fs');
 const mongoose = require('./database/db/mongoose.js').mongoose;
 const MyEdu = require('./database/models/myedu.js').MyEdu;
+const MyProfAspect = require('./database/models/myprofaspects.js').MyProfAspect;
 const port = process.env.PORT || 3000;
 
 var app = express();
@@ -54,15 +55,20 @@ app.get('/edu', (req, res) => {
 	});
 });
 
-app.get('/professional/goal', (req, res) => {
-	//return a JSON object containing descriptions of my career goal
+app.get('/profession/aspects', (req, res) => {
+	//return a JSON object containing descriptions of all the aspects of my profession
+	MyProfAspect.find().then((aspects) => {
+		res.send(aspects);
+	}).catch((err) => {
+		res.status(400).send(err);
+	});
 });
 
-app.get('/professional/skills', (req, res) => {
+app.get('/profession/skills', (req, res) => {
 	//return a JSON array containing all my professional skills
 });
 
-app.get('/professional/projects', (req, res) => {
+app.get('/profession/projects', (req, res) => {
 	//return a JSON array containing all the projects I've done
 });
 

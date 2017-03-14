@@ -1,25 +1,27 @@
 figure.img-sliding-cap-div {
-	margin: 0px;
-	width: 300px;
+	width: 300px; /*Redundant, only for the purpose of this demo*/
 	position: relative;
 	overflow: hidden;
 }
 
 figure.img-sliding-cap-div img {
-	display: block;
 	width: 100%;
+	display: block;
 }
 
 figure.img-sliding-cap-div figcaption {
-	background-color: #800000;
+	background-color: #400000;
 	color: #ffffff;
-	opacity: 0.5;
+	opacity: 0.4;
+	text-align: center;
+	width: 100%;
+	height: 100%;
 	position: absolute;
-	top: -4em;
-	transition-duration: 0.2s;
-    transition-timing-function: ease-in;
+	top: 100%;
+	transition-duration: 0.3s;
+    transition-timing-function: ease-in-out;
 }
 
 figure.img-sliding-cap-div:hover figcaption {
-	top: 0px;
+	top: 0%;
 }
