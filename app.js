@@ -24,7 +24,7 @@ app.get('/', (req, res) => {
 		zhuhaiImg: 'images/zhuhai.png',
 		whiteColor: '#ffffff',
 		blueColor: '#9bf1ff',
-		maroonColor: '#800000',
+		maroonColor: '#400000',
 		fontStyle: 'italic',
 		aboutMe: 'About Me',
 		myEdu: 'My Education',

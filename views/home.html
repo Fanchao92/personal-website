@@ -58,8 +58,7 @@
     
     <div class="container-fluid bg-color-white" id="my-edu-div">
       <h1 id="my-edu-h">{{myEdu}}</h1>
-      <div id="my-edu-content" class="row fade-in-div">
-      </div>
+      <div id="my-edu-content" class="row fade-in-div"></div>
     </div>
 
     <div class="container-fluid bg-color-blue" id="my-prof-div">
@@ -69,11 +68,9 @@
           <h2 id="my-prof-goal-h">My Goal</h2>
           <div id="my-prof-goal-content">
             <p>
-              I am a software engineer now. And not only that, but also <span style="font-weight: bold;">I want to become a GOOD software engineer</span>. As far as I see, the future of software engineering is shaped by the following <span id="num-of-aspects"></span> aspects, which I should work on for my goal:
+              I am a software engineer now. And not only that, <span style="font-weight: bold;">I also want to become a GOOD software engineer</span>. As far as I see, the future of software engineering is shaped by the following <span id="num-of-aspects"></span> aspects, which I should work on for my goal:
             </p>
-            <div class="my-prof-goal-aspects">
-              <!-- PlaceHolder -->
-            </div>
+            <div id="my-prof-goal-aspects" class="row"></div>
           </div>
         </div>
 
@@ -116,6 +113,27 @@
         }
       }).fail(function(evt) {
         $('#my-edu-h').after($('<p style="color: red; font-weight: bold">Could NOT load education records!</p>'));
+      });
+
+      $.getJSON('/profession/aspects', {}, function(aspects) {
+        var aspectsDiv = $('div#my-prof-goal-content div#my-prof-goal-aspects');
+
+        $('div#my-prof-goal-content span#num-of-aspects').append(`${aspects.length}`);
+        aspects.forEach((aspect) => {
+          var figDiv = $('<div class="col-md-3"></div>');
+          var fig = $('<figure class="img-sliding-cap-div"></figure>');
+          var img = $(`<img alt="${aspect.name}" src=${aspect.imgLink}></img>`);
+          var figCap = $('<figcaption></figcaption>');
+
+          aspectsDiv.append(figDiv);
+          figDiv.append(fig);
+          fig.append(img);
+          fig.append(figCap);
+          figCap.append(`<h3>${aspect.name}</h3>`);
+          figCap.append(`<p style="color: #ffffff;">${aspect.depiction}</p>`);
+        });
+      }).fail(function(evt) {
+        $('div#my-prof-goal-aspects').append('<p style="color: red; font-weight: bold">Could NOT load Profession-related information!</p>');
       });
 
       $('#scrollspy-target-nav').on('activate.bs.scrollspy', function (event) {

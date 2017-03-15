@@ -11,7 +11,7 @@
 {
 	name: "Cloud Computing",
 	imgLink: "images/cloud.jpg",
-	depiction: "Whether you're a developer or a user, your laptop and your smart phone are backed up by the resources from all over the world!"
+	depiction: "Whether you're a developer or a user, your laptop and your smart phone are backed up by powerful servers connected to the Internet!"
 }
 {
 	name: "Artificial Intelligence",
