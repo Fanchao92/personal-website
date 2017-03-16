@@ -24,6 +24,7 @@
             <img class="img-responsive" alt="Brand" src="{{signature}}">
           </a>
         </div>
+        
         <ul class="nav navbar-nav navbar-right">
           <li><a href="#about-me-h"><span>{{aboutMe}}</span></a></li>
           <li><a href="#my-edu-h"><span>{{myEdu}}</span></a></li>
@@ -147,7 +148,7 @@
           if($(ele).text() === activeSectName) {
             var contentDiv = $(ele).siblings('div.fade-in-div');
             if(contentDiv.css('visibility') === 'hidden') {
-              contentDiv.css('visibility', 'visible').hide().fadeIn(1200);
+              contentDiv.hide().css('visibility', 'visible').fadeIn(1200);
             }
           }
         });
