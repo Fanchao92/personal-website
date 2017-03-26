@@ -223,39 +223,29 @@
 
       function addOneEdu(edu) {
         var eduSect = $('#my-edu-div #my-edu-content');
-        var curEduSect = $('<div class="col-md-4"></div>');
-        var curEduThumbnail = $('<div class="thumbnail"></div>');
+        var curEduSect = $('<div class="col-md-4 card-container" style="height: 220px;"></div>');
+        var card = $(`<div class="card"></div>`);
+        var frontSide = $(`<div class="cardfront"><img alt="school logo" src="${edu.schoolLogoLink}" style="height: 168px;"></div>`);
+        var backSide = $('<div class="cardback"></div>');
         var caption = $('<div class="caption"></div>');
-        var schoolLink = $(`<a href=${edu.schoolWebLink}></a>`);
-        var schoolLogoImg = $(`<img src="${edu.schoolLogoLink}" alt="School Logo" style="height: 168px;">`);
-        var schoolImg = $(`<img src="${edu.schoolImgLink}" alt="School Image" style="height: 168px">`);
-
+        
         eduSect.append(curEduSect);
-        curEduSect.append(curEduThumbnail);
-        curEduThumbnail.append(schoolLink);
-        schoolLink.append(schoolLogoImg);
-        curEduThumbnail.append(caption);
-        caption.append(`<h4>${edu.schoolName}</h4>`);
-
+        curEduSect.append(card);
+        card.append(frontSide);
+        card.append(backSide);
+        
+        backSide.append(caption);
+        caption.append(`<a href="${edu.schoolWebLink}"><h2>${edu.schoolName}</h2></a>`);
         if(edu.major) {
           caption.append(`<p>Degree Earned: ${edu.degreeEarned} in ${edu.major}</p>`);
         } else {
           caption.append(`<p>Degree Earned: ${edu.degreeEarned}</p>`);
         }
-
         if(edu.gpa) {
           caption.append(`<p>gpa: ${edu.gpa}</p>`);
         } else {
           caption.append('<p>gpa: Not Available</p>');
         }
-
-        schoolLink.hover(() => {
-          schoolLogoImg.remove();
-          schoolLink.append(schoolImg);
-        }, () => {
-          schoolImg.remove();
-          schoolLink.append(schoolLogoImg);
-        });
       }
     </script>
   </body>
