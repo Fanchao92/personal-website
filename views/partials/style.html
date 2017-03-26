@@ -65,13 +65,35 @@
 
   .square-box{
     position: relative;
-    width: 65%;
-    overflow: hidden;
+    width: 72%;
   }
   .square-box::before{
     content: "";
     display: block;
     padding-top: 100%;
+  }
+  .square-content-rising{
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+  }
+  .square-content-rising div {
+    display: table;
+    position: relative;
+    width: 100%;
+    height: 70%;
+    transition: height 0.2s;
+  }
+  .square-content-rising div:hover {
+    height: 100%;
+  }
+  .square-content-rising span {
+    display: table-cell;
+    text-align: center;
+    vertical-align: middle;
+    color: {{maroonColor}}
   }
   .square-content-rotating{
     position: absolute;
@@ -85,7 +107,7 @@
     position: relative;
     width: 100%;
     height: 100%;
-    transition: transform 1.0s;
+    transition: transform 0.8s;
   }
   .square-content-rotating div:hover {
     transform: rotate(360deg);
