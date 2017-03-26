@@ -69,15 +69,29 @@
         <div id="my-prof-goal-div" style="padding-top:50px;">
           <div id="my-prof-goal-content">
             <p>
-              I am a software engineer now. And not only that, <span style="font-weight: bold;">I also want to become a GOOD software engineer</span>. As far as I see, the future of software engineering is shaped by the following <span id="num-of-aspects"></span> aspects, which I should work on for my goal:
+              I am a software engineer now. And not only that, <span style="font-weight: bold;">I also want to become a GOOD software engineer</span>. As far as I see, the future of software engineering is shaped by the following <span id="num-of-aspects"></span> aspects combined:
             </p>
             <div id="my-prof-goal-aspects" class="row"></div>
           </div>
         </div>
-
+        
         <div id="my-prof-skills-div" style="padding-top:50px;">
-          <div id="my-prof-skills-content">
-            <!-- PlaceHolder -->
+          <p>I keep learning new skills and practising what I've already learned. I believe in getting hands-on experience, i.e., reading documents and sample code, and then coding.</p>
+          <div id="my-prof-skills-content" class="row">
+            <div id="my-prof-skills-tools" class="col-md-6" style="border-right: 1px solid {{maroonColor}};">
+              <div id="my-prof-skills-tools-h"></div>
+              <div id="my-prof-skills-tools-content"></div>
+            </div>
+            <div id="my-prof-skills-others" class="col-md-6">
+              <div id="my-prof-skills-pl" style="padding-left: 3px; padding-bottom: 3px;">
+                <div id="my-prof-skills-pl-h"></div>
+                <div id="my-prof-skills-pl-content" class="row"></div>
+              </div>
+              <div id="my-prof-skills-knowledge" style="border-top: 1px solid {{maroonColor}};">
+                <div id="my-prof-skills-knowledge-h"></div>
+                <div id="my-prof-skills-knowledge-content"></div>
+              </div>
+            </div>
           </div>
         </div>
 
@@ -133,6 +147,23 @@
         });
       }).fail(function(evt) {
         $('div#my-prof-goal-aspects').append('<p style="color: red; font-weight: bold">Could NOT load Profession-related information!</p>');
+      });
+
+      $.getJSON('/profession/skills', {}, function(skills){
+        $('#my-prof-skills-pl-h').append(`<h2 style="color: {{maroonColor}};">${skills[ 0 ].title}</h2>`);
+        skills[ 0 ].entries.forEach((progLan) => {
+          var circleContainer = $('<div class="col-md-3" style="padding-top: 4px; padding-bottom: 4px;"></div>');
+          var circleBox = $('<div class="circle-box">');
+          var circleContent = $('<div class="circle-content"></div>');
+          var content = $(`<div><span>${progLan}</span></div>`);
+
+          $('#my-prof-skills-pl-content').append(circleContainer);
+          circleContainer.append(circleBox);
+          circleBox.append(circleContent);
+          circleContent.append(content);
+        });
+      }).fail(function(evt){
+        $('div#my-prof-skills-content').append('<p style="color: red; font-weight: bold">Could NOT load Professional skills!</p>');
       });
 
       $('#scrollspy-target-nav').on('activate.bs.scrollspy', function (event) {

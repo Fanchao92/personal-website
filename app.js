@@ -4,6 +4,7 @@ const fs = require('fs');
 const mongoose = require('./database/db/mongoose.js').mongoose;
 const MyEdu = require('./database/models/myedu.js').MyEdu;
 const MyProfAspect = require('./database/models/myprofaspects.js').MyProfAspect;
+const MyProfSkill = require('./database/models/myprofskill.js').MyProfSkill;
 const port = process.env.PORT || 3000;
 
 var app = express();
@@ -66,6 +67,42 @@ app.get('/profession/aspects', (req, res) => {
 
 app.get('/profession/skills', (req, res) => {
 	//return a JSON array containing all my professional skills
+	MyProfSkill.find().then((skills) => {
+		res.send(skills);
+	}).catch((err) => {
+		res.status(400).send(err);
+	});
+});
+
+function findSkills(skillName) {
+	return MyProfSkill.findOne({"title": skillName});
+}
+
+app.get('/profession/skills/pl', (req, res) => {
+	//return a JSON array containing all the programming languages I've learned
+	findSkills("Programming Languages").then((docs) => {
+		res.send(docs.entries);
+	}).catch((e) => {
+		res.status(400).send(e);
+	});
+});
+
+app.get('/profession/skills/tools', (req, res) => {
+	//return a JSON array containing all the tools and frameworks I've used
+	findSkills("Tools and Frameworks").then((docs) => {
+		res.send(docs.entries);
+	}).catch((e) => {
+		res.status(400).send(e);
+	});
+});
+
+app.get('/profession/skills/knowledge', (req, res) => {
+	//return a JSON array containing all the software-related knowledge I have
+	findSkills("Knowledge").then((docs) => {
+		res.send(docs.entries);
+	}).catch((e) => {
+		res.status(400).send(e);
+	});
 });
 
 app.get('/profession/projects', (req, res) => {
