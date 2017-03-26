@@ -152,16 +152,30 @@
       $.getJSON('/profession/skills', {}, function(skills){
         $('#my-prof-skills-pl-h').append(`<h2 style="color: {{maroonColor}};">${skills[ 0 ].title}</h2>`);
         skills[ 0 ].entries.forEach((progLan) => {
-          var circleContainer = $('<div class="col-md-3" style="padding-top: 4px; padding-bottom: 4px;"></div>');
-          var circleBox = $('<div class="circle-box">');
-          var circleContent = $('<div class="circle-content"></div>');
+          var squareContainer = $('<div class="col-md-3" style="padding-top: 4px; padding-bottom: 4px;"></div>');
+          var squareBox = $('<div class="square-box">');
+          var squareContent = $('<div class="square-content-growing-aspect"></div>');
           var content = $(`<div><span>${progLan}</span></div>`);
 
-          $('#my-prof-skills-pl-content').append(circleContainer);
-          circleContainer.append(circleBox);
-          circleBox.append(circleContent);
-          circleContent.append(content);
+          $('#my-prof-skills-pl-content').append(squareContainer);
+          squareContainer.append(squareBox);
+          squareBox.append(squareContent);
+          squareContent.append(content);
         });
+
+        $('#my-prof-skills-knowledge-h').append(`<h2 style="color: {{maroonColor}};">${skills[ 2 ].title}</h2>`);
+        skills[ 2 ].entries.forEach((k) => {
+          var squareContainer = $('<div class="col-md-3" style="padding-top: 4px; padding-bottom: 4px;"></div>');
+          var squareBox = $('<div class="square-box">');
+          var squareContent = $('<div class="square-content-rotating"></div>');
+          var content = $(`<div style="border: 2px solid {{maroonColor}}"><span>${k}</span></div>`);
+
+          $('#my-prof-skills-knowledge-content').append(squareContainer);
+          squareContainer.append(squareBox);
+          squareBox.append(squareContent);
+          squareContent.append(content);
+        });
+
       }).fail(function(evt){
         $('div#my-prof-skills-content').append('<p style="color: red; font-weight: bold">Could NOT load Professional skills!</p>');
       });

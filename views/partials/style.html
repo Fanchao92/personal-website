@@ -63,31 +63,54 @@
     top: 0%;
   }
 
-  .circle-box{
+  .square-box{
     position: relative;
     width: 65%;
     overflow: hidden;
   }
-  .circle-box::before{
+  .square-box::before{
     content: "";
     display: block;
     padding-top: 100%;
   }
-  .circle-content{
+  .square-content-rotating{
     position: absolute;
     top: 0;
     left: 0;
     bottom: 0;
     right: 0;
   }
-  .circle-content div {
+  .square-content-rotating div {
+    display: table;
+    position: relative;
+    width: 100%;
+    height: 100%;
+    transition: transform 1.0s;
+  }
+  .square-content-rotating div:hover {
+    transform: rotate(360deg);
+  }
+  .square-content-rotating span {
+    display: table-cell;
+    text-align: center;
+    vertical-align: middle;
+    color: {{maroonColor}}
+  }
+  .square-content-growing-aspect{
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+  }
+  .square-content-growing-aspect div {
     display: table;
     position: relative;
     width: 100%;
     height: 100%;
     transition: font-size 0.5s ease, font-weight 0.5s ease;
   }
-  .circle-content div::before{
+  .square-content-growing-aspect div::before{
     content: '';
     position: absolute;
     top: 0;
@@ -99,12 +122,12 @@
     border-left: 2px solid transparent;
     transition: width 0.5s ease, height 0.5s ease;
   }
-  .circle-content div:hover::before {
+  .square-content-growing-aspect div:hover::before {
     width: 100%;
     height: 100%;
     border-color: {{maroonColor}};
   }
-  .circle-content div::after{
+  .square-content-growing-aspect div::after{
     content: '';
     position: absolute;
     bottom: 0;
@@ -116,16 +139,16 @@
     border-right: 2px solid transparent;
     transition: width 0.5s ease, height 0.5s ease;
   }
-  .circle-content div:hover::after {
+  .square-content-growing-aspect div:hover::after {
     width: 100%;
     height: 100%;
     border-color: {{maroonColor}};
   }
-  .circle-content div:hover {
+  .square-content-growing-aspect div:hover {
     font-size: 120%;
     font-weight: bold;
   }
-  .circle-content span {
+  .square-content-growing-aspect span {
     display: table-cell;
     text-align: center;
     vertical-align: middle;
