@@ -1,0 +1,7 @@
+Hello! Welcome to the git repository of my first personal website. Since this is the first independent website I built, I 
+complicated the website in that I used NodeJS as the backend to feed data from a MongoDB database back to the user via some APIs. So, at 
+the client side, the browser needs to download all the data using AJAX and append the data to the HTML file using JQuery. The UI was 
+built with BootStrap, and some customized CSS styles. I know this may be no good to the performance of the website, but all I am trying to
+do is to practise all the techniques I've learned so far.
+If you want to check out my website, please click on this link: https://hidden-beyond-83894.herokuapp.com/.
+The responsiveness is still a big problem and I'm trying to fix it.
