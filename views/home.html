@@ -221,7 +221,7 @@
             slide = $('<div class="item"></div>');
           }
           var content = $(`<img src="${projects[ idx ].photoLink}" alt="Project ${idx+1}" style="margin: auto;">`);
-          var caption = $(`<div class="carousel-caption" style="color:{{maroonColor}};"><h3>${projects[idx].title}</h3></div>`);
+          var caption = $(`<div class="carousel-caption" style="color:{{maroonColor}};position:relative;left:auto;right:auto;"><h3>${projects[idx].title}</h3></div>`);
 
           slide.append(content);
           slide.append(caption);

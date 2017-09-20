@@ -117,7 +117,6 @@ app.get('/profession/projects', (req, res) => {
 	});
 });
 
-
 //////////////////// End of the API part ////////////////////////
 
 app.listen(port, () => {
