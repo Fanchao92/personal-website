@@ -5,6 +5,9 @@ const mongoose = require('./database/db/mongoose.js').mongoose;
 const MyEdu = require('./database/models/myedu.js').MyEdu;
 const MyProfAspect = require('./database/models/myprofaspects.js').MyProfAspect;
 const MyProfSkill = require('./database/models/myprofskill.js').MyProfSkill;
+const MyProfProject = require('./database/models/myprofproject.js').MyProfProject;
+const nodemailer = require('nodemailer');
+const mg = require('nodemailer-mailgun-transport');
 const port = process.env.PORT || 3000;
 
 var app = express();
@@ -107,11 +110,14 @@ app.get('/profession/skills/knowledge', (req, res) => {
 
 app.get('/profession/projects', (req, res) => {
 	//return a JSON array containing all the projects I've done
+	MyProfProject.find().then((docs) => {
+		res.send(docs);
+	}).catch((e) => {
+		res.status(400).send(e);
+	});
 });
 
-app.post('/contact', (req, res) => {
-	;
-});
+
 //////////////////// End of the API part ////////////////////////
 
 app.listen(port, () => {

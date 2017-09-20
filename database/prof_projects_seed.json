@@ -1,0 +1,25 @@
+{
+	"title": "Face Recognition App on Android",
+	"depiction": [
+		"Designed a multi-page UI using Fragments", 
+		"Utilized OpenCV on Android for face detection and recognition", 
+		"Managed sample photos using external storage and Utilized SQLite to store the information of each photo",
+		"Deployed a Tomcat Server to store photos and their recognition results, and display them in client's browser"
+	],
+	"photoLink": "images/project_face_rec_android.jpg",
+	"githubLink": "https://github.com/Fanchao92/fanchao92.github.io/tree/master/My_Java_Projects/Face%20Recognizer",
+	"startDate": "04/2016",
+	"endDate": "04/2016"
+}
+{
+	"title": "Personal Website",
+	"depiction": [
+		"Utilized NodeJS as the back-end to connect to MongoDB database and serve data(education profile, skills, projects) to the front-end", 
+		"Used Bootstrap as the front-end framework to design the UI. Also implemented some customized UI elements and effects using CSS and JavaScript(sliding captions, animated border, flippable photos, etc.)", 
+		"Used AJAX to pull data from the server and JQuery to add the data to the UI at the client side"
+	],
+	"photoLink": "images/project_personal_web.jpg",
+	"githubLink": "https://github.com/Fanchao92/personal-website",
+	"startDate": "03/2017",
+	"endDate": "03/2017"
+}

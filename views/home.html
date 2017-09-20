@@ -55,8 +55,8 @@
 
     <div class="container-fluid bg-color-blue" id="about-me-div">
       <div id="about-me-content" class="row fade-in-div" style="padding-top:50px;">
-        <div id="about-me-content-img" class="col-md-3"></div>
-        <div id="about-me-content-text" class="col-md-9"></div>
+        <div id="about-me-content-img" class="col-md-3 col-xs-3"></div>
+        <div id="about-me-content-text" class="col-md-9 col-xs-9"></div>
       </div>
     </div>
     
@@ -78,11 +78,11 @@
         <div id="my-prof-skills-div" style="padding-top:50px;">
           <p>I keep learning new skills and practising what I've already learned. I believe in getting hands-on experience, i.e., reading documents and sample code, and then coding.</p>
           <div id="my-prof-skills-content" class="row">
-            <div id="my-prof-skills-tools" class="col-md-6" style="border-right: 1px solid {{maroonColor}};">
+            <div id="my-prof-skills-tools" class="col-md-6 col-xs-6" style="border-right: 1px solid {{maroonColor}};">
               <div id="my-prof-skills-tools-h"></div>
               <div id="my-prof-skills-tools-content"></div>
             </div>
-            <div id="my-prof-skills-others" class="col-md-6">
+            <div id="my-prof-skills-others" class="col-md-6 col-xs-6">
               <div id="my-prof-skills-pl" style="padding-left: 3px; padding-bottom: 3px;">
                 <div id="my-prof-skills-pl-h"></div>
                 <div id="my-prof-skills-pl-content" class="row"></div>
@@ -95,9 +95,26 @@
           </div>
         </div>
 
-        <div id="my-prof-projects-div" style="padding-top:50px;">
+        <div id="my-prof-projects-div" style="padding-top: 50px;">
           <div id="my-prof-projects-content">
-            <!-- PlaceHolder -->
+            <div id="my-prof-projects-carousel" class="carousel slide" data-ride="carousel">
+              <ol class="carousel-indicators">
+                <li data-target="#my-prof-projects-carousel" data-slide-to="0" class="active"></li>
+                <li data-target="#my-prof-projects-carousel" data-slide-to="1"></li>
+              </ol>
+
+              <div class="carousel-inner" role="listbox"></div>
+
+              <!-- Controls -->
+              <a class="left carousel-control" href="#my-prof-projects-carousel" role="button" data-slide="prev">
+                <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+                <span class="sr-only">Previous</span>
+              </a>
+              <a class="right carousel-control" href="#my-prof-projects-carousel" role="button" data-slide="next">
+                <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+                <span class="sr-only">Next</span>
+              </a>
+            </div>
           </div>
         </div>
       </div>
@@ -107,7 +124,7 @@
 
     <script type="text/javascript">
       $.getJSON('/about', {}, function(data){
-        var img = $(`<img class="img-responsive img-circle" alt="My Picture" src="${data.myImg}" style="width: 256px; height: 256px; vertical-align: middle;">`);
+        var img = $(`<img class="img-circle" alt="My Picture" src="${data.myImg}" style="width: 256px; height: 256px; vertical-align: middle;">`);
         var selfIntro = $(`<p>${data.selfIntro}</p>`);
 
         $('#about-me-div #about-me-content #about-me-content-img').append(img);
@@ -133,7 +150,7 @@
 
         $('div#my-prof-goal-content span#num-of-aspects').append(`${aspects.length}`);
         aspects.forEach((aspect) => {
-          var figDiv = $('<div class="col-md-3"></div>');
+          var figDiv = $('<div class="col-md-3 col-xs-3"></div>');
           var fig = $('<figure class="img-sliding-cap-div"></figure>');
           var img = $(`<img alt="${aspect.name}" src=${aspect.imgLink}></img>`);
           var figCap = $('<figcaption></figcaption>');
@@ -152,7 +169,7 @@
       $.getJSON('/profession/skills', {}, function(skills){
         $('#my-prof-skills-pl-h').append(`<h2 style="color: {{maroonColor}};">${skills[ 0 ].title}</h2>`);
         skills[ 0 ].entries.forEach((progLan) => {
-          var squareContainer = $('<div class="col-md-3" style="padding-top: 4px; padding-bottom: 4px;"></div>');
+          var squareContainer = $('<div class="col-md-3 col-xs-3" style="padding-top: 4px; padding-bottom: 4px;"></div>');
           var squareBox = $('<div class="square-box"></div>');
           var squareContent = $('<div class="square-content-growing-aspect"></div>');
           var content = $(`<div><span>${progLan}</span></div>`);
@@ -165,7 +182,7 @@
 
         $('#my-prof-skills-knowledge-h').append(`<h2 style="color: {{maroonColor}};">${skills[ 2 ].title}</h2>`);
         skills[ 2 ].entries.forEach((k) => {
-          var squareContainer = $('<div class="col-md-3" style="padding-top: 4px; padding-bottom: 4px;"></div>');
+          var squareContainer = $('<div class="col-md-3 col-xs-3" style="padding-top: 4px; padding-bottom: 4px;"></div>');
           var squareBox = $('<div class="square-box"></div>');
           var squareContent = $('<div class="square-content-rotating"></div>');
           var content = $(`<div style="border: 2px solid {{maroonColor}}"><span>${k}</span></div>`);
@@ -178,7 +195,7 @@
 
         $('#my-prof-skills-tools-h').append(`<h2 style="color: {{maroonColor}};">${skills[ 1 ].title}</h2>`);
         skills[ 1 ].entries.forEach((tool) => {
-          var squareContainer = $('<div class="col-md-3" style="padding-top: 4px; padding-bottom: 4px;"></div>');
+          var squareContainer = $('<div class="col-md-3 col-xs-3" style="padding-top: 4px; padding-bottom: 4px;"></div>');
           var squareBox = $('<div class="square-box"></div>');
           var squareContent = $('<div class="square-content-rising"></div>');
           var content = $(`<div style="border: 2px solid {{maroonColor}}"><span>${tool}</span></div>`);
@@ -190,6 +207,28 @@
         });
       }).fail(function(evt){
         $('div#my-prof-skills-content').append('<p style="color: red; font-weight: bold">Could NOT load Professional skills!</p>');
+      });
+
+      $.getJSON('/profession/projects', {}, function(projects) {
+        var myProjectsCarousel = $('#my-prof-projects-carousel .carousel-inner');
+
+        for(var idx = 0; idx < projects.length; idx++) {
+          var slide = null;
+
+          if(idx == 0) {
+            slide = $('<div class="item active"></div>');
+          } else {
+            slide = $('<div class="item"></div>');
+          }
+          var content = $(`<img src="${projects[ idx ].photoLink}" alt="Project ${idx+1}" style="margin: auto;">`);
+          var caption = $(`<div class="carousel-caption" style="color:{{maroonColor}};"><h3>${projects[idx].title}</h3></div>`);
+
+          slide.append(content);
+          slide.append(caption);
+          myProjectsCarousel.append(slide);
+        }
+      }).fail(function(evt) {
+        $('#my-prof-projects-carousel .carousel-inner').append("<p>Can't load data</p>");
       });
 
       $('#scrollspy-target-nav').on('activate.bs.scrollspy', function (event) {
@@ -223,7 +262,7 @@
 
       function addOneEdu(edu) {
         var eduSect = $('#my-edu-div #my-edu-content');
-        var curEduSect = $('<div class="col-md-4 card-container" style="height: 220px;"></div>');
+        var curEduSect = $('<div class="col-md-4 col-xs-4 card-container" style="height: 220px;"></div>');
         var card = $(`<div class="card"></div>`);
         var frontSide = $(`<div class="cardfront"><img alt="school logo" src="${edu.schoolLogoLink}" style="height: 168px;"></div>`);
         var backSide = $('<div class="cardback"></div>');
