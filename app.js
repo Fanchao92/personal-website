@@ -1,20 +1,32 @@
 const express = require('express');
 const hbs = require('hbs');
 const fs = require('fs');
+const bodyParser = require('body-parser');
 const mongoose = require('./database/db/mongoose.js').mongoose;
 const MyEdu = require('./database/models/myedu.js').MyEdu;
 const MyProfAspect = require('./database/models/myprofaspects.js').MyProfAspect;
 const MyProfSkill = require('./database/models/myprofskill.js').MyProfSkill;
 const MyProfProject = require('./database/models/myprofproject.js').MyProfProject;
-const nodemailer = require('nodemailer');
-const mg = require('nodemailer-mailgun-transport');
 const port = process.env.PORT || 3000;
 
 var app = express();
+if(process.env.NODE_ENV != 'production') {
+	var config = JSON.parse(fs.readFileSync(`${__dirname}/mailgun/api.json`, 'utf8'));
+	process.env.MAILGUN_DOMAIN = config.MAILGUN_DOMAIN;
+	process.env.MAILGUN_API_KEY = config.MAILGUN_API_KEY;
+	process.env.to = config.to;
+}
+
+var mailgun = require('mailgun-js')({
+	domain: process.env.MAILGUN_DOMAIN, 
+	apiKey: process.env.MAILGUN_API_KEY
+});
 
 app.set('view engine', 'hbs');
 app.engine('html', hbs.__express);
 app.use(express.static(`${__dirname}/public`));
+app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.json());
 hbs.registerPartials(`${__dirname}/views/partials`);
 
 //Render the main page
@@ -117,8 +129,27 @@ app.get('/profession/projects', (req, res) => {
 	});
 });
 
+app.post('/contactme', (req, res) => {
+	var data = {
+	  	from: req.body.email,
+	  	to: process.env.to,
+	  	subject: `Message by ${req.body.fName} ${req.body.lName} from my personal website`,
+	  	text: req.body.msg
+	};
+	 
+	mailgun.messages().send(data, function (error, body) {
+	  	if(error) {
+	  		res.status(404)
+	  		   .send({});
+	  	} else {
+	  		console.log(body);
+	  		res.send({});
+	  	}
+	});
+});
 //////////////////// End of the API part ////////////////////////
 
 app.listen(port, () => {
+	console.log(`current local directory: ${__dirname}`);
 	console.log(`Server is running on port ${port}`);
 });

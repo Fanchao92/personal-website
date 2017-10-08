@@ -96,33 +96,137 @@
         </div>
 
         <div id="my-prof-projects-div" style="padding-top: 50px;">
-          <div id="my-prof-projects-content">
-            <div id="my-prof-projects-carousel" class="carousel slide" data-ride="carousel">
-              <ol class="carousel-indicators">
-                <li data-target="#my-prof-projects-carousel" data-slide-to="0" class="active"></li>
-                <li data-target="#my-prof-projects-carousel" data-slide-to="1"></li>
-              </ol>
+          <p>These are the projects I worked on before. I am also planning to work on more! Practice! Practice! Practice!</p>
+          <div id="proj-img-div" class="row"></div>
+          <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModal">
+            <div class="modal-dialog modal-lg" role="document">
+              <div class="modal-content">
+              <div id="myCarousel" class="carousel slide" data-ride="carousel">
+                <ol class="carousel-indicators"></ol>
 
-              <div class="carousel-inner" role="listbox"></div>
-
-              <!-- Controls -->
-              <a class="left carousel-control" href="#my-prof-projects-carousel" role="button" data-slide="prev">
-                <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
-                <span class="sr-only">Previous</span>
-              </a>
-              <a class="right carousel-control" href="#my-prof-projects-carousel" role="button" data-slide="next">
-                <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
-                <span class="sr-only">Next</span>
-              </a>
+                <div class="carousel-inner" role="listbox">
+                  <!-- Controls -->
+                  <a class="left carousel-control" href="#myCarousel" role="button" data-slide="prev">
+                    <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+                    <span class="sr-only">Previous</span>
+                  </a>
+                  <a class="right carousel-control" href="#myCarousel" role="button" data-slide="next">
+                    <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+                    <span class="sr-only">Next</span>
+                  </a>
+                </div>
+              </div>
             </div>
           </div>
         </div>
       </div>
     </div>
 
-    <h1 id="contact-me-div">{{contactMe}}</h1><img alt="Placeholder" src="http://placehold.it/300x800/F0FD00">
+    <div class="container-fluid bg-color-white" id="my-edu-div">
+      <div id="contact-me-div" style="padding-top:50px;">
+        <h1 id="contact-me-title">{{contactMe}}</h1>
+        <form id="contact-me-form">
+          <span>First name:</span><input type="text" name="fname">
+          <span>Last name:</span><input type="text" name="lname">
+          <span>Email:</span><input type="email" name="email"><br>
+          <p>Message:</p> 
+          <textarea class="form-control" rows="20" name="msg" style="width:100%;"></textarea>
+          <button type="submit" class="btn btn-primary btn-lg">Send the message to me!</button>
+        </form>
+      </div>
+    </div>
 
     <script type="text/javascript">
+      $('div#contact-me-div form#contact-me-form').on('submit', function(event) {
+        event.preventDefault();
+        var fName = $(event.target).find("[name='fname']").val();
+        var lName = $(event.target).find("[name='lname']").val();
+        var email = $(event.target).find("[name='email']").val();
+        var msg = $(event.target).find("[name='msg']").val();
+        var userMsg = {
+          "fName": fName,
+          "lName": lName,
+          "email": email,
+          "msg": msg
+        };
+        var hintId = "empty-field-hint";
+        var submitButton = $(event.target).find("button[type='submit']");
+
+        $(event.target).find(`p#${hintId}`).remove();
+        if(fName.length && lName.length && email.length && msg.length) {
+          $(submitButton).attr('disabled', '');
+          $.ajax({
+            type: "POST",
+            url: "/contactme",
+            data: userMsg
+          })
+          .done(function() {
+            $(event.target).append(`<p id="${hintId}" style="font-weight:bold;">The message is already sent to ME! I'll reply soon.</p>`);
+          })
+          .fail(function() {
+            $(event.target).append(`<p id="${hintId}" style="font-weight:bold;">Oops! Something is wrong and the message isn't sent to me. Please try later!</p>`);
+          })
+          .always(function() {
+            $(submitButton).removeAttr('disabled');
+          });
+        } else {
+          $(event.target).append(`<p id="${hintId}" style="font-weight:bold;">***Please fill in all the fields above***</p>`);
+        }
+      });
+
+      $.getJSON('/profession/projects', {}, function(projects) {
+        var projImgDiv = $('#my-prof-projects-div #proj-img-div');
+        var carouselIndDiv = $('#my-prof-projects-div #myModal #myCarousel ol.carousel-indicators');
+        var carouselInnerDiv = $('#my-prof-projects-div #myModal #myCarousel .carousel-inner');
+        var tmpDiv = $('<div></div>');
+
+        projects.forEach(function(proj, idx) {
+          projImgDiv.append(`<img alt="${proj.title}" class="myProjectImg col-md-6" id="projImg-${idx}" src="${proj.photoLink}" data-toggle="modal" data-target="#myModal">`);
+          carouselIndDiv.append(`<li data-target="#myCarousel" data-slide-to="${idx}"></li>`);
+
+          var itemDiv = $(`<div class="item"></div>`);
+          var itemImg = $(`<img src="${proj.photoLink}" alt="${proj.title}" style="margin: auto;">`);
+          var itemCapDiv = $(`<div class="carousel-caption" 
+            style="position:relative;left:auto;right:auto;color:{{maroonColor}};"></div>`);
+          var depctList = $('<ol></ol>');
+          itemCapDiv.append(`<a href=${proj.githubLink}><h3>${proj.title}</h3></a>`);
+          if(proj.startDate === proj.endDate) {
+            itemCapDiv.append(`<p>${proj.startDate}</p>`);
+          } else {
+            itemCapDiv.append(`<p>${proj.startDate}-${proj.endDate}</p>`);
+          }
+          proj.depiction.forEach(function(dept) {
+            depctList.append(`<li style="text-align:left;">${dept}</li>`);
+          });
+          itemCapDiv.append(depctList);
+          itemDiv.append(itemImg);
+          itemDiv.append(itemCapDiv);
+          tmpDiv.append(itemDiv);
+        });
+        carouselInnerDiv.prepend($(tmpDiv).children());
+        var carouselIndList = $(carouselIndDiv).children();
+        var carouselItemList = $(carouselInnerDiv).children();
+        projImgDiv.on('click', function(event) {
+          var imgId = $(event.target).attr('id');
+          var imgIdNumStr = imgId.split('-')[ 1 ];
+          var imgIdNum = parseInt(imgIdNumStr);
+
+          for(var idx = 0; idx < projImgDiv.children().length; idx++) {
+            if(idx == imgIdNum) {
+              $(carouselIndList[ idx ]).attr("class", "active");
+              $(carouselItemList[ idx ]).attr("class", "item active");
+            } else {
+              if($(carouselIndList[ idx ]).attr("class")) {
+                $(carouselIndList[ idx ]).removeAttr("class");
+              }
+              $(carouselItemList[ idx ]).attr("class", "item");
+            }
+          }
+        });
+      }).fail(function(evt) {
+        ;
+      });
+
       $.getJSON('/about', {}, function(data){
         var img = $(`<img class="img-circle" alt="My Picture" src="${data.myImg}" style="width: 256px; height: 256px; vertical-align: middle;">`);
         var selfIntro = $(`<p>${data.selfIntro}</p>`);
@@ -207,28 +311,6 @@
         });
       }).fail(function(evt){
         $('div#my-prof-skills-content').append('<p style="color: red; font-weight: bold">Could NOT load Professional skills!</p>');
-      });
-
-      $.getJSON('/profession/projects', {}, function(projects) {
-        var myProjectsCarousel = $('#my-prof-projects-carousel .carousel-inner');
-
-        for(var idx = 0; idx < projects.length; idx++) {
-          var slide = null;
-
-          if(idx == 0) {
-            slide = $('<div class="item active"></div>');
-          } else {
-            slide = $('<div class="item"></div>');
-          }
-          var content = $(`<img src="${projects[ idx ].photoLink}" alt="Project ${idx+1}" style="margin: auto;">`);
-          var caption = $(`<div class="carousel-caption" style="color:{{maroonColor}};position:relative;left:auto;right:auto;"><h3>${projects[idx].title}</h3></div>`);
-
-          slide.append(content);
-          slide.append(caption);
-          myProjectsCarousel.append(slide);
-        }
-      }).fail(function(evt) {
-        $('#my-prof-projects-carousel .carousel-inner').append("<p>Can't load data</p>");
       });
 
       $('#scrollspy-target-nav').on('activate.bs.scrollspy', function (event) {
